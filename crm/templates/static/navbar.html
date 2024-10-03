@@ -1,0 +1,77 @@
+<style>
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 160px;
+  background-color: #55555534;
+  position: fixed;
+  height: auto;
+  overflow: auto;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.sidebar li {
+  list-style-type: none;
+}
+
+.sidebar a {
+  display: block;
+  color: rgb(170, 170, 170);
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
+
+{% if user.is_authenticated %}
+<div class="sidebar" style="margin-top: 240px;">
+  <a class="navbar-brand" href="#">TiW CRM</a>
+    <a href="{% url 'logout' %}">Wyloguj</a>
+    <hr style="height:2px;border-width:0;background-color:rgb(255, 174, 0)">
+    <a href="{% url 'home' %}">Lista pacjentów</a>
+    <a href="{% url 'patient-add' %}">Dodaj dane</a>
+
+    {% if user.is_superuser %}
+      <hr style="height:2px;border-width:0;background-color:rgb(255, 174, 0)">
+        <a href="{% url 'list-user' %}">Uzytkownicy</a>
+        <a href="{% url 'register-user' %}">Nowy użytkownik</a>
+      <hr style="height:2px;border-width:0;background-color:rgb(255, 174, 0)">
+        <a href="{% url 'patient-csv' %}">Export .csv</a>
+        <a href="{% url 'import-csv' %}">Import .csv</a>
+        <a href="{% url 'backup' %}">Backup .csv</a>
+    {% endif %}
+</div>
+{% endif %}

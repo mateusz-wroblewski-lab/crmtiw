@@ -1,0 +1,49 @@
+services:
+  web:
+    build: .
+    container_name: crmtiw
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - DJANGO_SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      # 
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_NAME=${POSTGRES_NAME}
+      # # Tailscale
+      # - DOCKER_MODS: ghcr.io/tailscale-dev/docker-mod:main
+      # - TAILSCALE_STATE_DIR=/var/lib/tailscale
+      # - TAILSCALE_HOSTNAME=crmtiw
+      # - TAILSCALE_AUTHKEY=tskey-auth-kd5f3cmHYL11CNTRL-ZwWorfFVrY9RZcpkHU9kY9Go8uYFrWUT
+    # depends_on:
+    #   - db
+    volumes:
+      - .:/app
+      # - ./tailscale:/var/lib/tailscale
+    ports:
+      - 8004:8000
+    restart: always
+    networks:
+      - tails
+
+  # db:
+  #   image: postgres:15
+  #   container_name: crmtiw_db
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #     POSTGRES_DB: ${POSTGRES_DB}
+  #   volumes:
+  #     - /mnt/user/django/crm_tiw/db:/var/lib/postgresql/data
+  #   ports:
+  #     - 5436:5432
+  #   networks:
+  #     - tails
+
+networks:
+  tails:
+    external: true
+    name: tails

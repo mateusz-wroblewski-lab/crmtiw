@@ -1,0 +1,18 @@
+{% extends 'static/base.html' %}
+
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<h1>Import .csv</h1><br/>
+<!-- import_csv.html -->
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ form_csv }}
+    <br>
+    <button class="btn btn-outline-warning" type="submit">Upload CSV</button>
+</form>
+{{ redirect_to_login_immediately }}
+
+{% endblock %}

@@ -1,0 +1,279 @@
+{% extends 'static/base.html' %}
+
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    table-col {background-color: rgba(255, 255, 255, 0.06)}
+</style>
+
+<div class="fixed-top bg-body-tertiary navbar-expand-lg">
+    <br/> 
+    <div class="container" style="margin-bottom: 64px;"> 
+      <h1 style="margin-right: 1%;">Lista pacjentów</h1>
+      <form class="d-flex" method="POST" action="{% url 'patient-search' %}">
+      {% csrf_token %}
+        <button class="btn btn-outline-secondary" style="margin-right: 1%;" type="submit"><i class="fa fa-search">&nbsp;Szukaj</i></button>
+        <input class="form-control me-2" type="search" placeholder="Szukaj Pacjenta - wpisz PESEL" aria-label="Search" name="searched">
+      </form>
+    </div>
+</div> 
+
+<div class="container fixed-top" style="margin-top: 140px;">
+    <ul class="nav nav-tabs" bg-body-tertiary navbar-expand-lg>
+        <li><a href="{% url 'home' %}" class="nav-link active" >Pacjenci</a></li>  
+        <li><a class="btn btn-outline-warning" style="margin-left: 10px;" href="{% url 'home' %}">Wróć</a></li>
+    </ul>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imię i Nazwisko</th>
+            <th class="table-col">{{ patient_user.0.name }}</th><th>{{ patient_user.1.name}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Dezycja</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_user.0.decision }}</td><td>{{ patient_user.1.decision }}</td>
+        </tr>
+        <tr>
+            <td>Data konsylium</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_user.0.date }}</td><td>{{ patient_user.1.date }}</td>
+        </tr>
+        <tr>
+            <td>HCC</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_user.0.hcc_number }}</td><td>{{ patient_user.1.hcc_number }}</td>
+        </tr>
+        <tr>
+            <td>PESEL</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_user.0.pesel }}</td><td>{{ patient_user.1.pesel }}</td>
+        </tr>
+        <tr>
+            <td>Telefon</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_user.0.phone }}</td><td>{{ patient_user.1.phone }}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_user.0.email }}</td><td>{{ patient_user.1.email }}</td>
+        </tr>
+
+        <tr>
+            <th>Dane szczegółowe</th><th></th><th></th>
+        </tr>
+        <tr>
+            <td>Grupa krwi</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_base.0.grupa_krwi }}</td><td>{{ patient_base.1.grupa_krwi }}</td>
+        </tr>
+        <tr>
+            <td>Wiek</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_base.0.age }}</td><td>{{ patient_base.1.age }}</td>
+        </tr>
+        <tr>
+            <td>Wzrost</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_base.0.patient_height }}</td><td>{{ patient_base.1.patient_height }}</td>
+        </tr>
+        <tr>
+            <td>Waga</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_base.0.patient_weight }}</td><td>{{ patient_base.1.patient_weight }}</td>
+        </tr>
+        <tr>
+            <td>Płeć</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_base.0.gender }}</td><td>{{ patient_base.1.gender }}</td>
+        </tr>
+        <tr>
+            <td>Dezyzja po konsylium</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_base.0.decision }}</td><td>{{ patient_base.1.decision }}</td>
+        </tr>
+
+        <tr>
+            <th>Infomacje o guzie</th><th></th><th></th>
+        </tr>
+        <tr>
+            <td>Ilość</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_thumor.0.thumor_number }}</td><td>{{ patient_thumor.1.thumor_number }}</td>
+        </tr>
+        <tr>
+            <td>Guz 1</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor1_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor1_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor1_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor1_segment4 }}</strong> )
+            </td>
+            <td>
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor1_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor1_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor1_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor1_segment4 }}</strong> )
+            </td>
+        </tr>
+        <tr>
+            <td>Guz 2</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor2_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor2_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor2_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor2_segment4 }}</strong> )
+            </td>
+            <td>
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor2_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor2_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor2_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor2_segment4 }}</strong> )
+            </td>
+        </tr>
+        <tr>
+            <td>Guz 3</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor3_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor3_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor3_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor3_segment4 }}</strong> )
+            </td>
+            <td>
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor3_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor3_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor3_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor3_segment4 }}</strong> )
+            </td>
+        </tr>
+        <tr>
+            <td>Guz 4</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor4_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor4_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor4_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor4_segment4 }}</strong> )
+            </td>
+            <td>
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor4_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor4_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor4_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor4_segment4 }}</strong> )
+            </td>
+        </tr>
+        <tr>
+            <td>Guz 5</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor5_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor5_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor5_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor5_segment4 }}</strong> )
+            </td>
+            <td>
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor5_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor5_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor5_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor5_segment4 }}</strong> )
+            </td>
+        </tr>
+        <tr>
+            <td>Guz 6</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor6_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor6_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor6_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.0.thumor6_segment4 }}</strong> )
+            </td>
+            <td>
+                Segment 1:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor6_segment1 }}</strong> )<br>
+                Segmnet 2:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor6_segment2 }}</strong> )<br>
+                Segmnet 3:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor6_segment3 }}</strong> )<br>
+                Segmnet 4:&nbsp;&nbsp;( <strong>{{ patient_thumor.1.thumor6_segment4 }}</strong> )
+            </td>
+        </tr>  
+        <tr>
+            <td>Największy wymiar</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_thumor.0.top_diameter }}</td><td>{{ patient_thumor.1.top_diameter }}</td>
+        </tr>
+
+        <tr></tr>
+            <th>Badania laboratoryjne</th><th></th><th></th>
+        </tr>
+        <tr>
+            <td>Data badania</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.lab_date }}</td><td>{{ patient_lab.1.lab_date }}</td>
+        </tr>
+        <tr>
+            <td>Albumina</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.albuminy }}</td><td>{{ patient_lab.1.albuminy }}</td>
+        </tr>
+        <tr>
+            <td>INR</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.inr }}</td><td>{{ patient_lab.1.inr }}</td>
+        </tr>
+        <tr>
+            <td>Kreatynina</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.kreatynina }}</td><td>{{ patient_lab.1.kreatynina }}</td>
+        </tr>
+        <tr>
+            <td>Sód surowica</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.sod_surowica }}</td><td>{{ patient_lab.1.sod_surowica }}</td>
+        </tr>
+        <tr></tr>
+            <td>Billirubina cał</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.bilirubina_cal }}</td><td>{{ patient_lab.1.bilirubina_cal }}</td>
+        </tr>
+
+        <tr>
+            <td>Li-Rads</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.li_rads_hcc }}</td><td>{{ patient_lab.1.li_rads_hcc }}</td>
+        </tr>
+        <tr>
+            <td>AFP</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.afp }}</td><td>{{ patient_lab.1.afp }}</td>
+        </tr>
+        <tr>
+            <td>PLT</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.plt }}</td><td>{{ patient_lab.1.plt }}</td>
+        </tr>
+        <tr>
+            <td>CEA</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.cea }}</td><td>{{ patient_lab.1.cea }}</td>
+        </tr>
+        <tr>
+            <td>CA19-9</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.ca19_9 }}</td><td>{{ patient_lab.1.ca19_9 }}</td>
+        </tr>
+        <tr>
+            <td>Cukrzyca</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.cukrzyca }}</td><td>{{ patient_lab.1.cukrzyca }}</td>
+        </tr>
+        <!--  -->
+        <tr>
+            <td>Marskość</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.marskosc }}</td><td>{{ patient_lab.1.marskosc }}</td>
+        </tr>
+        <tr>
+            <td>Wodobrzusze</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.wodobrzusze }}</td><td>{{ patient_lab.1.wodobrzusze }}</td>
+        </tr>
+        <tr>
+            <td>Encefalopatia</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.encefalopatia }}</td><td>{{ patient_lab.1.encefalopatia }}</td>
+        </tr>
+        <tr>
+            <td>HBV</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.hbv }}</td><td>{{ patient_lab.1.hbv }}</td>
+        </tr>
+        <tr>
+            <td>HCV</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.hcv }}</td><td>{{ patient_lab.1.hcv }}</td>
+        </tr>
+        <tr>
+            <td>Komentarz</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.kommentarz }}</td><td>{{ patient_lab.1.kommentarz }}</td>
+        </tr>
+        <tr>
+            <td>Leczenie</td>
+            <td style="background-color: rgba(255, 255, 255, 0.06);">{{ patient_lab.0.leczenie }}</td><td>{{ patient_lab.1.leczenie }}</td>
+        </tr>
+    </tbody>
+</table>
+
+{{ redirect_to_login_immediately }}
+
+{% endblock %}

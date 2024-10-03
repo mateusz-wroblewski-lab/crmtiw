@@ -1,0 +1,85 @@
+{% extends 'static/base.html' %}
+
+
+{% block content %}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <h1>Lista pacjentów</h1><br/>
+
+
+  <form class="d-flex" method="POST" action="{% url 'patient-search' %}">
+  {% csrf_token %}
+    <button class="btn btn-outline-secondary" style="margin-right: 1%;" type="submit"><i class="fa fa-search">&nbsp;Szukaj</i></button>
+    <input class="form-control me-2" type="search" placeholder="Szukaj Pacjenta - wpisz PESEL" aria-label="Search" name="searched">
+  </form>
+
+  </br>
+
+  <form action="{% url 'patient-compare' %}" method="POST">
+    {% csrf_token %}
+     <!-- nav -->
+  <ul class="nav nav-tabs">
+    <li><a href="{% url 'home' %}" class="nav-link active" >Pacjenci&nbsp;(&nbsp;{{ patient_count }}&nbsp;)</a></li>  
+    <li><a href="{% url 'patient-add' %}" class="btn"><i class="fa fa-plus-square" style="font-size: 24px;"></i></a></li>
+    <!--  -->
+    <li><input type="submit" value="Porównaj" class="btn btn-outline-warning"><span class="badge bg-dark text-white ms-1 rounded-pill">0</span></li>
+  </ul>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">HCC</th>
+        <th scope="col">Data konsylium</th>
+        <th scope="col">Imię i nazwisko</th>
+        <th scope="col">Telefon</th>
+        <th scope="col">Email</th>
+        <th scope="col">PESEL</th>
+        <th scope="col">Decyzja</th>
+        <th style="font-size: 10px; text-align: center;">Porównaj</th>
+        <th style="font-size: 10px; text-align: center;">Aktualizuj</th>
+        <th style="font-size: 10px; text-align: center;">Profil</th>
+        {% if user.is_superuser %}
+          <th style="font-size: 10px; text-align: center;">Delete</th>
+        {% endif %}
+      </tr>
+    </thead>
+    {% for patient in patient %}
+    <tbody>
+      <tr>
+        <th>{{ patient.hcc_number }}</th>
+        <td>{{ patient.date }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.phone }}</td>
+        <td>{{ patient.pesel }}</td>
+        <td>{{ patient.email }}</td>
+        <td>{{ patient.decision }}</td>
+        
+
+
+        <td><center>
+          <input class="form-check-input" type="checkbox" name="compare" value="{{ patient.id }}">
+          </center></td>
+        <td><center>
+          <a class="btn btn-light d-inline" style="font-size: 12px;" href="{% url 'patient-update' patient.id %}">
+          <i class="fa fa-refresh"></i></a>
+        </center></td> 
+        <td><center>
+          <a class="btn btn-light d-inline" style="font-size: 12px;" href="{% url 'patient' patient.id %}">
+          <i class="fa fa-user" style="font-size: 15px;"></i></a>
+        </center></td>
+        {% if user.is_superuser %}
+        <td><center>
+          <a class="btn d-inline p-1" href="{% url 'patient-delete' patient.id %}">
+          <i class="fa fa-remove" style="color: orange;"></i></a>
+        </center></td>
+        {% endif %} 
+      </tr> 
+    </tbody>
+    {% endfor %}
+  </table>
+  </form>
+  <a class="btn btn-outline-warning" href="{% url 'home' %}">Powrót</a>
+
+{{ redirect_to_login_immediately }}
+
+{% endblock %}

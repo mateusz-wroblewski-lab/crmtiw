@@ -1,0 +1,21 @@
+{% extends 'static/base.html' %}
+
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <h1>Zarejestruj</h1>
+    <br/><br/>
+    <form method='POST' action="{% url 'register-user' %}">
+    {% csrf_token %}
+
+        {{ form.as_p }}
+        <br/>
+        <button type="submit" class="btn btn-secondary">Zarejestruj</button>
+    </form>      
+</div>
+<br/>
+<a class="btn btn-outline-secondary" href="{% url 'home' %}">Wróć</a>
+{{ redirect_to_login_immediately }}
+
+{% endblock %}

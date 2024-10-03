@@ -1,0 +1,126 @@
+{% extends 'static/base.html' %}
+
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<h1>Profil pacjenta</h1>
+<br/>
+<form>
+    <h5>Dane</h5>
+    <div class="d-flex">
+        <p class="form-control" style="margin-right: 5px; font-size: 15px; width: 26%;">HCC<br/><strong>{{ patient_user.hcc_number }}</strong></p>
+        <p class="form-control" style="margin-right: 5px; font-size: 15px; width: 60%;">Data konsylium<br/><strong>{{ patient_user.date }}</strong></p>
+        <p class="form-control" style="margin-right: 5px; font-size: 15px;">Imię i Nazwisko<br/><strong>{{ patient_user.name }}</strong></p>
+        <p class="form-control" style="margin-right: 5px; font-size: 15px;">Telefon<br/><strong>{{ patient_user.phone }}</strong></p>
+        <p class="form-control" style="margin-right: 5px; font-size: 15px;">PESEL<br/><strong>{{ patient_user.pesel }}</strong></p>
+        <p class="form-control">{{ patient_user.email }}</p>
+    </div>
+
+    <div class="d-flex">
+      <p class="form-control" style="margin-right: 5px; font-size: 12px; width: 26%;">Grupa krwi<br/><strong>{{ patient_base.grupa_krwi }}</strong></p>
+      <p class="form-control" style="margin-right: 5px; font-size: 12px;">Wiek<br/>{{ patient_base.age }}</p>
+      <p class="form-control" style="margin-right: 5px; font-size: 12px;">Wysokość<br/>{{ patient_base.patient_height }}</p>
+      <p class="form-control" style="margin-right: 5px; font-size: 12px;">Waga<br/>{{ patient_base.patient_weight }}</p>
+      <p class="form-control" style="margin-right: 5px; font-size: 12px; width: 16%;">Płeć<br/>{{ patient_base.gender }}</p>
+      <p class="form-control" style="font-size: 12px; width: 16%;">ECOG<br/>{{ patient_base.ecog }}</p>
+  </div> 
+<br/>
+
+<h5>Infomacje o guzie</h5>
+{% if filled_fields %}
+    <div class="d-flex">
+        <p class="form-control" style="border-style: none; width: 16%;">Liczba&nbsp;&nbsp;&nbsp;<strong>( {{ filled_fields.thumor_number }} )</strong></p>
+    </div>
+    <div class="d-flex flex-row">
+        <p class="form-control" style="margin-right: 5px;">Segment 1</strong></p>
+        <p class="form-control" style="margin-right: 5px;">Segment 2</strong></p>
+        <p class="form-control" style="margin-right: 5px;">Segment 3</strong></p>
+        <p class="form-control" style="margin-right: 5px;">Wymiar</strong></p>
+    </div>
+  <div class="d-flex flex-row">
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor1_segment1 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor1_segment2 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor1_segment3 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor1_diameter }} )</strong></p>
+  </div>
+  <div class="d-flex flex-row">
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor2_segment1 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor2_segment2 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor2_segment3 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor2_diameter }} )</strong></p>
+  </div>
+  <div class="d-flex flex-row">
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor3_segment1 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor3_segment2 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor3_segment3 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor3_diameter }} )</strong></p>
+  </div>
+  <div class="d-flex flex-row">
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor4_segment1 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor4_segment2 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor4_segment3 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor4_diameter }} )</strong></p>
+  </div>
+  <div class="d-flex flex-row">
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor5_segment1 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor5_segment2 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor5_segment3 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor5_diameter }} )</strong></p>
+  </div>
+  <div class="d-flex flex-row">
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor6_segment1 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor6_segment2 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor6_segment3 }} )</strong></p>
+      <p class="form-control" style="margin-right: 5px;"><strong>( {{ filled_fields.thumor6_diameter }} )</strong></p>
+  </div>
+  <div class="d-flex">
+      <p class="form-control" style="border-style: none; width: 16%;">Największy wymiar&nbsp;&nbsp;&nbsp;<strong>( {{ filled_fields.top_diameter }} )</strong></p>
+  </div>
+{% else %}
+<div class="alert alert-warning col-md-6 offset-md-3 alert-dismissible fade show" role="alert">
+    <center>Brak danych, proszę o wypełnienie</center>
+  </div>
+{% endif %}
+
+
+
+<br/>
+  <h5>Badania laboratoryjne</h5>
+    <div class="d-flex">
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Data badania{{ patient_lab.lab_date }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Albumina<br/>{{ patient_lab.albuminy }}</p> 
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">INR<br/>{{ patient_lab.inr}}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Kreatynina<br/>{{ patient_lab.kreatynina }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Sód surowica<br/>{{ patient_lab.sod_surowica }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Billirubina cał<br/>{{ patient_lab.bilirubina_cal }}</p>
+    </div>
+    <div class="d-flex">
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Li-Rads{{ patient_lab.li_rads_hcc }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">AFP<br/>{{ patient_lab.afp }}</p> 
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">PLT<br/>{{ patient_lab.plt }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">CEA<br/>{{ patient_lab.cea }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">CA19-9<br/>{{ patient_lab.ca19_9 }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Cukrzyca<br/>{{ patient_lab.cukrzyca }}</p>
+    </div>
+
+    <div class="d-flex">
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Marskość<br/>{{ patient_lab.marskosc }}</p> 
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Wodobrzusze<br/>{{ patient_lab.wodobrzusze }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Encefalopatia<br/>{{ patient_lab.encefalopatia }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">HBV<br/>{{ patient_lab.hbv }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">HCV<br/>{{ patient_lab.hcv }}</p>
+        <p class="form-control" style="margin-right: 5px; font-size: 12px;">Dezyzja po konsylium<br/>{{ patient_user.decision }}</p>
+    </div>
+    <div class="d-flex">
+          <textarea rows="5" placeholder="Dodatkowy komentarz" class="form-control" style="margin-right: 5px; background: #ffffff00; resize: none; " disabled>{{ patient_lab.kommentarz }}</textarea>
+          <textarea rows="5" placeholder="Leczenie" class="form-control" style="background: #ffffff00; resize: none;" disabled>{{ patient_lab.leczenie }}</textarea>
+    </div>
+  <br/>
+</form> 
+<a class="btn btn-outline-warning" href="{% url 'home' %}">Powrót</a>
+
+{{ redirect_to_login_immediately }}
+
+
+{% endblock %}

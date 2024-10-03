@@ -1,0 +1,28 @@
+{% extends 'static/base.html' %}
+
+
+{% block content %}
+<h1>Porównanie</h1>
+
+<div class="container">
+    <div class="row">
+        {% for patient_list in patient_list %}
+        {% if patient.approved %}
+        <div class="col-6">
+            <ul class="list-group">
+                <li class="list-group-item">{{ patient_list.hcc_num }}</li>
+                <li class="list-group-item">{{ patient_list.first_name }}</li>
+                <li class="list-group-item">{{ patient_list.last_name }}</li>
+                <li class="list-group-item">{{ patient_list.phone }}</li>
+                <li class="list-group-item">{{ patient_list.pesnum }}</li>
+            </ul>
+            <br/>
+        </div>
+        {% endif %}
+        {% endfor %}
+        
+    </div>
+    
+</div>
+
+{% endblock %}

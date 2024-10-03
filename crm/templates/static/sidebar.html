@@ -1,0 +1,10 @@
+{% if user.is_authenticated %}
+<link rel="stylesheet" type="text/css" href="static/sidebar.css">
+
+<div class="sidebar"></div>
+  <a class="active" href="{% url 'home' %}">Lista pacjentów</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+</div>
+{% endif %}

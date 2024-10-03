@@ -1,0 +1,46 @@
+{% extends 'static/base.html' %}
+
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h1>Lista uzytkowników</h1><br/>
+
+<form action="" method="POST">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Użytkownik</th>
+        <th scope="col">Imię</th>
+        <th scope="col">Nazwisko</th>
+        <th scope="col">Email</th>
+        <th style="font-size: 10px; text-align: center;">Aktualizuj</th>
+        <th style="font-size: 10px; text-align: center;">Delete</th>
+
+      </tr>
+    </thead>
+    {% for user in users %}
+    <tbody>
+      <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td><center>
+          <a class="btn btn-light d-inline" style="font-size: 12px;" href="{% url 'update-user' user.id %}">
+          <i class="fa fa-refresh"></i></a>
+        </center></td> 
+        <td><center>
+          <a class="btn d-inline p-1" href="{% url 'delete-user' user.id %}">
+          <i class="fa fa-remove" style="color: orange;"></i></a>
+        </center></td>
+      </tr> 
+    </tbody>
+    {% endfor %}
+  </table>
+</form>
+<br/>
+<a class="btn btn-outline-secondary" href="{% url 'home' %}">Wróć</a>
+
+{{ redirect_to_login_immediately }}
+
+{% endblock %}
