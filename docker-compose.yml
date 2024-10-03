@@ -13,16 +13,10 @@ services:
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_PORT=${POSTGRES_PORT}
       - POSTGRES_NAME=${POSTGRES_NAME}
-      # # Tailscale
-      # - DOCKER_MODS: ghcr.io/tailscale-dev/docker-mod:main
-      # - TAILSCALE_STATE_DIR=/var/lib/tailscale
-      # - TAILSCALE_HOSTNAME=crmtiw
-      # - TAILSCALE_AUTHKEY=tskey-auth-kd5f3cmHYL11CNTRL-ZwWorfFVrY9RZcpkHU9kY9Go8uYFrWUT
     # depends_on:
     #   - db
     volumes:
       - .:/app
-      # - ./tailscale:/var/lib/tailscale
     ports:
       - 8004:8000
     restart: always
