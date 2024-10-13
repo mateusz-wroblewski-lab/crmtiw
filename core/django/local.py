@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'patients',
 
     'fontawesomefree',
-    'phonenumber_field',
 
     'turnstile',
 
