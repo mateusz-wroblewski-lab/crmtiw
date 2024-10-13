@@ -9,7 +9,7 @@ ROOT_URLCONF = 'core.urls'
 
 # Host
 ALLOWED_HOSTS = ['localhost', 'crmtiw.onrender.com', 'crmtiw.studioshouse.com', 'www.crmtiw.studioshouse.com']
-CSRF_TRUSTED_ORIGINS = ['https://crmtiw.onrender.com', 'https://crmtiw.studioshouse.com', 'http://crmtiw.studioshouse.com']
+CSRF_TRUSTED_ORIGINS = ['https://crmtiw.studioshouse.com', 'http://crmtiw.studioshouse.com']
 
 
 #X-Content-Type-Options
