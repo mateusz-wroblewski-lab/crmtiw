@@ -43,8 +43,7 @@ INSTALLED_APPS = [
 
     'django_recaptcha',
     'turnstile',
-    'login_history',
-
+    
     'django_apscheduler',
     'dbbackup',
 ]
