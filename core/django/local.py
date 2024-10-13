@@ -51,9 +51,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
 
     'turnstile',
-
-    'login_history',
-
+    
     'dbbackup',
 
 ]
