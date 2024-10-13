@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'patients',
 
     'fontawesomefree',
-    'phonenumber_field',
 
     'django_recaptcha',
     'turnstile',
