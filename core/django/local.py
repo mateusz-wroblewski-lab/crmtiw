@@ -8,8 +8,8 @@ DEBUG = env.bool('DEBUG', default=False)
 ROOT_URLCONF = 'core.urls'
 
 # Host
-ALLOWED_HOSTS = ['localhost', 'crmtiw.onrender.com', 'crmtiw.studioshouse.com', 'www.crmtiw.studioshouse.com']
-CSRF_TRUSTED_ORIGINS = ['https://crmtiw.studioshouse.com', 'http://crmtiw.studioshouse.com']
+ALLOWED_HOSTS = ['localhost', 'app.onrender.com', 'app.domain.com', 'www.app.domain.com']
+CSRF_TRUSTED_ORIGINS = ['https://app.domain.com', 'http://app.domain.com']
 
 
 #X-Content-Type-Options
@@ -17,8 +17,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 86400
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-# SECURE_SSL_REDIRECT = False # if True "You're accessing the development server over HTTPS, but it only supports HTTP."
 
 # for more security
 CSRF_COOKIE_SECURE = True
@@ -49,7 +47,6 @@ INSTALLED_APPS = [
     'patients',
 
     'fontawesomefree',
-
     'turnstile',
     
     'dbbackup',
