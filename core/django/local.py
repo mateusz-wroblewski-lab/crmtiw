@@ -89,6 +89,6 @@ DATABASE_ROUTERS = [
 # Cloudflare
 TURNSTILE_SITEKEY = env('TURNSTILE_SITEKEY')
 TURNSTILE_SECRET = env('TURNSTILE_SECRET')
-TURNSTILE_JS_API_URL = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
-TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
+TURNSTILE_JS_API_URL = ''
+TURNSTILE_VERIFY_URL = ''
 TURNSTILE_TIMEOUT = 5
